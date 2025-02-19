@@ -8,22 +8,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool _isChecked = false;
-  bool _isLoading = false; // Menambahkan status loading
-
-  // Fungsi untuk menandai loading selesai
+  bool _isLoading = false;
   void _navigateToLogin() {
     setState(() {
-      _isLoading = true; // Mulai loading
+      _isLoading = true;
     });
 
-    // Delay untuk simulasi proses
     Future.delayed(Duration(seconds: 2), () {
-      // Navigasi ke halaman Login setelah delay
       Navigator.push(
         context,
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
-            return Login(); // Halaman tujuan
+            return Login();
           },
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 0.0);
@@ -41,7 +37,6 @@ class _HomeState extends State<Home> {
           },
         ),
       ).then((_) {
-        // Ketika kembali dari halaman Login, set loading ke false
         setState(() {
           _isLoading = false;
         });
@@ -140,9 +135,7 @@ class _HomeState extends State<Home> {
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: _isChecked
-                          ? _navigateToLogin // Pindah ke halaman login
-                          : null,
+                      onPressed: _isChecked ? _navigateToLogin : null,
                       child: _isLoading
                           ? Text(
                               'Sedang memuat data',
@@ -157,14 +150,14 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 250.0), // Margin top
+                      padding: const EdgeInsets.only(top: 250.0),
                       child: Text(
                         "Copyright © Directed by Junx SF",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                         ),
-                        textAlign: TextAlign.center, // Rata tengah
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
@@ -172,20 +165,18 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          // Menambahkan overlay hitam semi-transparan dengan spinner jika loading true
           _isLoading
               ? Positioned.fill(
                   child: Container(
-                    color: Colors.black
-                        .withOpacity(0.5), // Overlay hitam semi-transparan
+                    color: Colors.black.withOpacity(0.5),
                     child: Center(
                       child: CircularProgressIndicator(
-                        color: Colors.deepOrange, // Spinner putih
+                        color: Colors.deepOrange,
                       ),
                     ),
                   ),
                 )
-              : Container(), // Tidak menampilkan overlay ketika loading false
+              : Container(),
         ],
       ),
     );

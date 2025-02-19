@@ -1,5 +1,5 @@
+import 'package:first_app/login.dart';
 import 'package:flutter/material.dart';
-import 'dashboard.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,110 +8,185 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool _isChecked = false;
+  bool _isLoading = false; // Menambahkan status loading
+
+  // Fungsi untuk menandai loading selesai
+  void _navigateToLogin() {
+    setState(() {
+      _isLoading = true; // Mulai loading
+    });
+
+    // Delay untuk simulasi proses
+    Future.delayed(Duration(seconds: 2), () {
+      // Navigasi ke halaman Login setelah delay
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return Login(); // Halaman tujuan
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(0.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.easeOut;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetAnimation = animation.drive(tween);
+
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        ),
+      ).then((_) {
+        // Ketika kembali dari halaman Login, set loading ke false
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
-                  // Menggunakan Stack
-                  alignment: Alignment.center,
+      body: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 100.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      width: 500,
-                      height: 300,
-                      fit: BoxFit.contain,
-                    ),
-                    Positioned(
-                      top: 210,
-                      child: Text(
-                        "KICAU MANIA",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 25,
-                          fontFamily: 'Roboto',
-                          color: Colors.black,
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 500,
+                          height: 320,
+                          fit: BoxFit.contain,
                         ),
+                        Positioned(
+                          top: 220,
+                          child: Text(
+                            "KICAU MANIA",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 25,
+                              fontFamily: 'Roboto',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 255,
+                          child: Text(
+                            "INDONESIA",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15,
+                              fontFamily: 'Roboto',
+                              color: Colors.deepOrange,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 300,
+                          child: Text(
+                            "\"Menyatukan Bersama Hobi\"",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 50),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _isChecked = value!;
+                            });
+                          },
+                          activeColor: Colors.red,
+                          checkColor: Colors.white,
+                          side: BorderSide(
+                            color: Colors.white,
+                            width: 2.0,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            "Saya telah membaca dan menyetujui Kebijakan Privasi dan Ketentuan Penggunaan aplikasi ini.",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _isChecked
+                          ? _navigateToLogin // Pindah ke halaman login
+                          : null,
+                      child: _isLoading
+                          ? Text(
+                              'Sedang memuat data',
+                              style: TextStyle(color: Colors.white),
+                            )
+                          : Text(
+                              'Bergabung Sekarang',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          _isChecked = value!;
-                        });
-                      },
-                      activeColor: Colors.red,
-                      checkColor: Colors.white,
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                    ),
-                    Expanded(
+                    Padding(
+                      padding: const EdgeInsets.only(top: 250.0), // Margin top
                       child: Text(
-                        "Saya telah membaca dan menyetujui Kebijakan Privasi dan Ketentuan Penggunaan aplikasi ini.",
+                        "Copyright © Directed by Junx SF",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                         ),
+                        textAlign: TextAlign.center, // Rata tengah
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _isChecked
-                      ? () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Dashboard()),
-                          );
-                        }
-                      : null,
-                  child: Text(
-                    'Bergabung Sekarang',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                ),
-                // Copyright
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0), // Margin top
-                  child: Text(
-                    "Copyright © Directed by Junx",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
-                    textAlign: TextAlign.center, // Rata tengah
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+          // Menambahkan overlay hitam semi-transparan dengan spinner jika loading true
+          _isLoading
+              ? Positioned.fill(
+                  child: Container(
+                    color: Colors.black
+                        .withOpacity(0.5), // Overlay hitam semi-transparan
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.deepOrange, // Spinner putih
+                      ),
+                    ),
+                  ),
+                )
+              : Container(), // Tidak menampilkan overlay ketika loading false
+        ],
       ),
     );
   }

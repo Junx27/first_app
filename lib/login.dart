@@ -10,21 +10,29 @@ class Login extends StatelessWidget {
 
   Future<User?> _signInWithGoogle(BuildContext context) async {
     try {
+      print("Initiating Google sign-in...");
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
       if (googleUser == null) {
+        print("Google sign-in aborted by user.");
         return null;
       }
+      print("Google sign-in successful, fetching authentication...");
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
+      print("Access Token: ${googleAuth.accessToken}");
+      print("ID Token: ${googleAuth.idToken}");
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+      print("Signing in with Google credentials...");
       final UserCredential userCredential =
           await _auth.signInWithCredential(credential);
+      print("User signed in: ${userCredential.user?.displayName}");
       return userCredential.user;
     } catch (e) {
-      print("Error during Google sign in: $e");
+      print("Error during Google sign-in: $e");
       return null;
     }
   }
@@ -59,7 +67,7 @@ class Login extends StatelessWidget {
           color: Colors.deepOrange,
           padding: EdgeInsets.only(left: 25),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/home');
           },
         ),
         actions: [
@@ -211,7 +219,7 @@ class Login extends StatelessWidget {
                     style: TextStyle(color: Colors.blue),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/auth');
                       },
                   ),
                 ],

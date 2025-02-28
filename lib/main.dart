@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:first_app/auth/login_with_email.dart';
 import 'package:first_app/dashboard.dart';
 import 'package:first_app/help.dart';
 import 'package:first_app/home.dart';
@@ -28,6 +29,7 @@ class Main extends StatelessWidget {
         '/home': (context) => Home(),
         '/dashboard': (context) => Dashboard(),
         '/help': (context) => Help(),
+        '/auth': (context) => LoginWithEmail(),
       },
     );
   }

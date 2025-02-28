@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
       _isLoading = true;
     });
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(milliseconds: 300), () {
       Navigator.push(
         context,
         PageRouteBuilder(

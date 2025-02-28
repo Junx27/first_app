@@ -1,18 +1,34 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_app/dashboard.dart';
+import 'package:first_app/help.dart';
+import 'package:first_app/home.dart';
 import 'package:first_app/loading_screen.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'dashboard.dart';
+import 'login.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Inisialisasi Firebase
+  runApp(Main());
 }
 
-class MyApp extends StatelessWidget {
+class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoadingScreen(),
+      title: 'Kicau Mania',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoadingScreen(),
+        '/login': (context) => Login(),
+        '/home': (context) => Home(),
+        '/dashboard': (context) => Dashboard(),
+        '/help': (context) => Help(),
+      },
     );
   }
 }

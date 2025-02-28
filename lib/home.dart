@@ -11,6 +11,7 @@ class _HomeState extends State<Home> {
   bool _isLoading = false;
   void _navigateToLogin() {
     setState(() {
+      _isChecked = false;
       _isLoading = true;
     });
 

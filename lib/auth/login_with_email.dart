@@ -13,11 +13,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final _formKey = GlobalKey<FormState>();
 
   void _login(BuildContext context) async {
-    setState(() {
-      _isLoading = true;
-    });
-    await Future.delayed(Duration(seconds: 2));
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      await Future.delayed(Duration(seconds: 2));
       String email = _emailController.text;
       String password = _passwordController.text;
 
@@ -159,7 +159,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   Positioned(
                     top: 170,
                     child: Text(
-                      "KICAU MANIA",
+                      "INDONESIA",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 11,

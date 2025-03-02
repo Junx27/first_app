@@ -64,47 +64,11 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/logo.png',
-                          width: 500,
-                          height: 320,
-                          fit: BoxFit.contain,
-                        ),
-                        Positioned(
-                          top: 220,
-                          child: Text(
-                            "KICAU MANIA",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 25,
-                              fontFamily: 'Roboto',
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 255,
-                          child: Text(
-                            "INDONESIA",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 15,
-                              fontFamily: 'Roboto',
-                              color: Colors.deepOrange,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 300,
-                          child: Text(
-                            "\"Menyatukan Bersama Hobi\"",
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                        ),
-                      ],
+                    Image.asset(
+                      'assets/icons/logo.png',
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.contain,
                     ),
                     SizedBox(height: 50),
                     Row(

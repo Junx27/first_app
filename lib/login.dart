@@ -85,40 +85,11 @@ class Login extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.contain,
-                ),
-                Positioned(
-                  top: 140,
-                  child: Text(
-                    "KICAU MANIA",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 16,
-                      fontFamily: 'Roboto',
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 160,
-                  child: Text(
-                    "KICAU MANIA",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 11,
-                      fontFamily: 'Roboto',
-                      color: Colors.deepOrange,
-                    ),
-                  ),
-                ),
-              ],
+            Image.asset(
+              'assets/icons/logo.png',
+              width: 100,
+              height: 200,
+              fit: BoxFit.contain,
             ),
             Container(
               width: double.infinity,

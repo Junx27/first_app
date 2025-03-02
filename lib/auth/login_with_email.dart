@@ -129,48 +129,23 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       body: Padding(
         padding: EdgeInsets.all(18),
         child: Padding(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.all(50),
           child: Column(
             children: [
               Stack(
                 alignment: Alignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.only(top: 100, bottom: 20),
                     child: Image.asset(
-                      'assets/images/logo.png',
-                      width: 180,
-                      height: 180,
+                      'assets/icons/logo.png',
+                      width: 100,
+                      height: 150,
                       fit: BoxFit.contain,
-                    ),
-                  ),
-                  Positioned(
-                    top: 150,
-                    child: Text(
-                      "KICAU MANIA",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 16,
-                        fontFamily: 'Roboto',
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 170,
-                    child: Text(
-                      "INDONESIA",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 11,
-                        fontFamily: 'Roboto',
-                        color: Colors.deepOrange,
-                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
               Center(
                 child: Form(
                   key: _formKey,

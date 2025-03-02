@@ -83,34 +83,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
                     alignment: Alignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/logo.png',
-                        width: 500,
-                        height: 320,
+                        'assets/icons/logo.png',
+                        width: 200,
+                        height: 200,
                         fit: BoxFit.contain,
-                      ),
-                      Positioned(
-                        top: 220,
-                        child: Text(
-                          "KICAU MANIA",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 25,
-                            fontFamily: 'Roboto',
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 255,
-                        child: Text(
-                          "INDONESIA",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 15,
-                            fontFamily: 'Roboto',
-                            color: Colors.deepOrange,
-                          ),
-                        ),
                       ),
                     ],
                   ),

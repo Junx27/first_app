@@ -21,6 +21,7 @@ class Main extends StatelessWidget {
       title: 'Kicau Mania',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       initialRoute: '/',
       routes: {

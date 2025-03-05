@@ -1,4 +1,5 @@
 class Post {
+  final String author;
   final String imageUrl;
   final String title;
   final String description;
@@ -7,6 +8,7 @@ class Post {
   final int shares;
 
   Post({
+    this.author = "",
     required this.imageUrl,
     required this.title,
     required this.description,

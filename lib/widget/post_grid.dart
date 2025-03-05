@@ -105,7 +105,7 @@ class PostList extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              top: 120,
+                              top: 100,
                               left: 20,
                               right: 20,
                               child: Column(
@@ -116,6 +116,16 @@ class PostList extends StatelessWidget {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
+                                      color: Colors.white,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    '@${post.author}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 13,
                                       color: Colors.white,
                                     ),
                                     maxLines: 1,

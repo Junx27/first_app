@@ -13,31 +13,14 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   late ScrollController _scrollController;
-  double appBarHeight = 400;
+  double appBarHeight = 600;
   bool _isAppBarColored = false;
   bool _isContainerVisible = false;
 
-  final List<String> comments = [
-    "Sangat menarik!",
-    "Bagus sekali!",
-    "Ini sangat membantu!",
-    "Suka dengan penulisnya.",
-    "Top banget!",
-    "Bermanfaat banget, terima kasih!",
-    "Keren!",
-    "Informasi yang sangat baik!",
-    "Ini benar-benar menginspirasi!",
-    "Saya setuju dengan ini!",
-    "Luar biasa, terus berkarya!",
-    "Kontennya berkualitas!",
-    "Sangat informatif dan jelas!",
-    "Wah, ini yang saya cari!",
-    "Terima kasih sudah berbagi!",
-    "Penjelasannya mudah dipahami!",
-    "Mantap sekali!",
-    "Ini layak dibagikan ke teman-teman!",
-    "Sederhana tapi sangat berguna!",
-    "Tetap semangat dalam berbagi ilmu!"
+  final List<Map<String, String>> comments = [
+    {"author": "Junx", "text": "Sangat menarik!"},
+    {"author": "Bekti", "text": "Sangat menarik!"},
+    {"author": "Chibay", "text": "Sangat menarik!"},
   ];
 
   @override
@@ -123,12 +106,22 @@ class _DetailPageState extends State<DetailPage> {
                           style: TextStyle(fontSize: 15, color: Colors.grey),
                         ),
                         SizedBox(height: 30),
+
+                        // Action icons: Like, Comment, Share
+                        ActionIcons(
+                          likes: widget.post.likes,
+                          comments: widget.post.comments,
+                          shares: widget.post.shares,
+                          onLike: () {},
+                          onComment: () {},
+                          onShare: () {},
+                        ),
+                        SizedBox(height: 10),
                         Text(
                           'Komentar (${comments.length})',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
                       ],
                     ),
                   ),
@@ -152,9 +145,20 @@ class _DetailPageState extends State<DetailPage> {
                         ],
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Text(
-                        comments[index],
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            comments[index]["author"] ?? "Anonim",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            comments[index]["text"] ?? "",
+                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -212,6 +216,54 @@ class _DetailPageState extends State<DetailPage> {
             ),
         ],
       ),
+    );
+  }
+}
+
+class ActionIcons extends StatelessWidget {
+  final int likes;
+  final int comments;
+  final int shares;
+  final VoidCallback onLike;
+  final VoidCallback onComment;
+  final VoidCallback onShare;
+
+  const ActionIcons({
+    Key? key,
+    required this.likes,
+    required this.comments,
+    required this.shares,
+    required this.onLike,
+    required this.onComment,
+    required this.onShare,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        _buildIcon(Icons.thumb_up, likes, onLike),
+        SizedBox(width: 15),
+        _buildIcon(Icons.comment, comments, onComment),
+        SizedBox(width: 15),
+        _buildIcon(Icons.share, shares, onShare),
+      ],
+    );
+  }
+
+  Widget _buildIcon(IconData icon, int count, VoidCallback onPressed) {
+    return Row(
+      children: [
+        IconButton(
+          icon: Icon(icon, color: Colors.black),
+          onPressed: onPressed,
+        ),
+        Text(
+          count.toString(),
+          style: TextStyle(color: Colors.black),
+        ),
+      ],
     );
   }
 }
